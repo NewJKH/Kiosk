@@ -39,9 +39,11 @@ public abstract class ConsoleUI {
     }
 
     private void drawContent(List<String> lines) {
-        for (String line : lines) {
-            System.out.println("+ " + line);
+        for (int i =0;i<lines.size();i++) {
+            String line = lines.get(i);
+            System.out.println(i + ". " + line);
         }
+        System.out.println("0. 종료");
     }
 
     protected abstract void view(List<String> contents);

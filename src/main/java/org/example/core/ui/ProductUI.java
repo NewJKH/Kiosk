@@ -1,4 +1,10 @@
 package org.example.core.ui;
 
-public class ProductUI{
+import java.util.List;
+
+public class ProductUI extends ConsoleUI{
+    @Override
+    protected void view(List<String> contents) {
+
+    }
 }
