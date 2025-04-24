@@ -4,8 +4,7 @@ import java.util.List;
 
 public abstract class ConsoleUI {
 
-    public final void render() {
-        List<String> lines = getContents();
+    public final void render(List<String> lines) {
 
         if (lines == null || lines.isEmpty()) return;
 
@@ -45,5 +44,5 @@ public abstract class ConsoleUI {
         }
     }
 
-    protected abstract List<String> getContents();
+    protected abstract void view(List<String> contents);
 }
