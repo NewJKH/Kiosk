@@ -41,7 +41,7 @@ public class InputUtil {
             try {
                 String value = scanner.next();
                 return (T) parser.apply(value);
-            } catch (Exception e) {
+            } catch (NumberFormatException e) {
                 System.out.println("입력에 오류가 발생했습니다.");
                 scanner.nextLine();
             }
