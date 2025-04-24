@@ -15,11 +15,14 @@ public class App {
         menuItems.add(new MenuItem("Cheeseburger", "포테이토 번과 비프패티, 치즈가 토핑된 치즈버거", 6.9));
         menuItems.add(new MenuItem("Hamburger", "비프패티를 기반으로 야채가 들어간 기본버거", 5.4));
 
-        MainMenuUI menu = new MainMenuUI();
+        MainMenuUI menu = new MainMenuUI(
+                "SHAKESHACK MENU"
+                    ,menuItems.stream()
+                        .map(MenuItem::toString)
+                        .toList()
+        );
         while (true){
-            menu.render(menuItems.stream()
-                            .map(MenuItem::toString)
-                            .toList());
+            menu.view();
             int number = InputUtil.input(Integer.class);
             if ( number == 0) return;
         }

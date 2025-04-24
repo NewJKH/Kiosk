@@ -4,7 +4,8 @@ import java.util.List;
 
 public abstract class ConsoleUI {
 
-    public final void render(List<String> lines) {
+    public final void render() {
+        List<String> lines = getFormattedLines();
 
         if (lines == null || lines.isEmpty()) return;
 
@@ -23,28 +24,19 @@ public abstract class ConsoleUI {
     }
 
     private void drawTopBorder(int width) {
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.println();
-        System.out.print("─".repeat(width));
-        System.out.println();
+        System.out.println("\n\n\n\n\n\n");
+        System.out.println("─".repeat(width));
     }
 
     private void drawBottomBorder(int width) {
-        System.out.print("─".repeat(width));
-        System.out.println();
+        System.out.println("─".repeat(width));
     }
 
     private void drawContent(List<String> lines) {
-        for (int i =0;i<lines.size();i++) {
-            String line = lines.get(i);
-            System.out.println((i+1) + ". " + line);
+        for (String line : lines) {
+            System.out.println(line);
         }
-        System.out.println("0. 종료");
     }
 
-    protected abstract void view(List<String> contents);
+    protected abstract List<String> getFormattedLines();
 }
