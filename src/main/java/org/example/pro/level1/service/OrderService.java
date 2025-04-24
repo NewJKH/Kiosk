@@ -1,21 +1,34 @@
 package org.example.pro.level1.service;
 
+import org.example.core.domain.model.MenuItem;
 import org.example.core.domain.repository.CartRepository;
-import org.example.core.domain.repository.MenuRepository;
+
+import java.util.Map;
 
 public class OrderService {
     private final CartRepository cartRepository;
-    private final MenuRepository menuRepository;
 
-    public OrderService(CartRepository cartRepository, MenuRepository menuRepository) {
+    public OrderService(CartRepository cartRepository) {
         this.cartRepository = cartRepository;
-        this.menuRepository = menuRepository;
     }
 
     public void purchase(){
-        for ( String name : cartRepository.getItemsName() ){
-            int ea = cartRepository.getEaByName(name);
-        }
+        // 구매 로직......
+        cartRepository.initCart();
     }
 
+    public double getTotalPrice() {
+        Map<MenuItem, Integer> cart = cartRepository.getCarts();
+        return cart.entrySet().stream()
+                .mapToDouble(e -> e.getKey().getPrice() * e.getValue())
+                .sum();
+    }
+
+    public boolean isEmpty() {
+        return cartRepository.isEmpty();
+    }
+
+    public void clear() {
+        cartRepository.initCart();
+    }
 }
