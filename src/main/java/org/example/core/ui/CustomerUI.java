@@ -19,6 +19,7 @@ public class CustomerUI extends ConsoleUI{
         return lines;
     }
 
+    @Override
     public void view() {
         render();
     }

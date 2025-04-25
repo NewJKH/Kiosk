@@ -27,6 +27,7 @@ public class CategoryUI extends ConsoleUI{
         return lines;
     }
 
+    @Override
     public void view() {
         render();
     }

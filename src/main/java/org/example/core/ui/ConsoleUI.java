@@ -39,4 +39,5 @@ public abstract class ConsoleUI {
     }
 
     protected abstract List<String> getFormattedLines();
+    public abstract void view();
 }

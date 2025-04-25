@@ -27,6 +27,7 @@ public class MainMenuUI extends ConsoleUI {
         return lines;
     }
 
+    @Override
     public void view() {
         render();
     }
