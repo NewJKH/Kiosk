@@ -4,14 +4,12 @@ import org.example.core.domain.model.Category;
 import org.example.core.domain.model.MenuItem;
 import org.example.core.domain.repository.CartRepository;
 import org.example.core.domain.repository.MenuRepository;
-import org.example.core.ui.CartUI;
-import org.example.core.ui.CategoryUI;
-import org.example.core.ui.MainMenuUI;
-import org.example.core.ui.OrderUI;
+import org.example.core.ui.*;
 import org.example.core.verification.InputUtil;
 import org.example.pro.level1.service.CartService;
 import org.example.pro.level1.service.MenuService;
 import org.example.pro.level1.service.OrderService;
+import org.example.pro.level2.CustomerType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,16 +107,38 @@ public class Kiosk {
 
     private void purchase(){
         Map<MenuItem, Integer> cart = cartService.getCartItems();
-        double total = orderService.getTotalPrice();
+        double total = orderService.getTotalPrice(CustomerType.GENERAL);
+
         OrderUI orderUI = new OrderUI(cart, total);
         orderUI.view();
         int input = InputUtil.input(Integer.class);
         if ( input == 1){
-            orderService.purchase();
-            System.out.println("주문이 완료되었습니다. 금액은 W "+total+" 입니다.");
-            category = Category.NONE;
+            selectCustomer();
         }
         else if ( input == 2) category = Category.NONE;
+    }
+
+    private void selectCustomer() {
+        CustomerUI customerUI = new CustomerUI();
+        customerUI.view();
+
+        int input = InputUtil.input(Integer.class);
+
+        CustomerType.findByOrdinal(input).ifPresentOrElse(target -> {
+            double totalPrice = orderService.getTotalPrice(target);
+            orderService.purchase();
+
+            System.out.printf(
+                    "주문이 완료되었습니다.\n선택한 대상: %s\n할인율: %.0f%%\n최종 결제 금액: ₩ %.0f\n",
+                    target.getLabel(),
+                    target.getDiscount() * 100,
+                    totalPrice
+            );
+
+            category = Category.NONE;
+        }, () -> {
+            System.out.println("잘못된 입력입니다. 다시 시도해주세요.");
+        });
     }
 
 }
