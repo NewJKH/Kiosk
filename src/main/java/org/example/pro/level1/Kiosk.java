@@ -28,6 +28,7 @@ public class Kiosk {
         this.cartService = new CartService(cartRepository);
         this.menuService = new MenuService(menuRepository);
         this.orderService = new OrderService(cartRepository);
+
         this.category = Category.NONE;
     }
 
@@ -61,7 +62,6 @@ public class Kiosk {
             case 3 -> category = Category.DESSERTS;
             case 4 -> {
                 if (hasOrder) purchase();
-                else return false;
             }
             case 5 -> {
                 if (hasOrder) orderService.clear();
