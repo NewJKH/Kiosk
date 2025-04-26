@@ -1,6 +1,6 @@
 package org.example.core.ui;
 
-abstract class UIHandler<T> {
+public abstract class UIHandler<T> {
     public final void process() {
         showUI();
         T input = getInput();

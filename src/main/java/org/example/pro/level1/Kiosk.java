@@ -4,7 +4,11 @@ import org.example.core.domain.model.Category;
 import org.example.core.domain.model.MenuItem;
 import org.example.core.domain.repository.CartRepository;
 import org.example.core.domain.repository.MenuRepository;
-import org.example.core.ui.ui.*;
+import org.example.core.ui.handler.CartHandler;
+import org.example.core.ui.ui.CategoryUI;
+import org.example.core.ui.ui.CustomerUI;
+import org.example.core.ui.ui.MainMenuUI;
+import org.example.core.ui.ui.OrderUI;
 import org.example.core.verification.InputUtil;
 import org.example.pro.level1.service.CartService;
 import org.example.pro.level1.service.MenuService;
@@ -93,16 +97,10 @@ public class Kiosk {
     }
 
     private void select(MenuItem item) {
-        String display = item.toString();
-        CartUI cartUI = new CartUI(display);
-        System.out.println(" 선택한 메뉴: " + display);
-        cartUI.view();
-        int input = InputUtil.input(Integer.class);
-        if (input == 1) {
-            cartService.addToCart(item);
-            System.out.println(item.getName() + " 이 장바구니에 추가되었습니다.");
-            category = Category.NONE;
-        }
+        new CartHandler(item, cartService,
+                () -> System.out.println("취소했습니다.")
+        ).process();
+        category = Category.NONE;
     }
 
     private void purchase() {
