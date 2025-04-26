@@ -75,7 +75,7 @@ public class Kiosk {
     private boolean foodUI() {
         List<MenuItem> items = menuService.getItemsByCategory(category);
 
-        MainMenuUI menuUI = new MainMenuUI(category.name()+" MENU", items.stream()
+        MainMenuUI menuUI = new MainMenuUI(category.name() + " MENU", items.stream()
                 .map(MenuItem::toString)
                 .toList());
         menuUI.view();
@@ -84,7 +84,7 @@ public class Kiosk {
         if (input == 0) {
             category = Category.NONE;
         } else if (input >= 1 && input <= items.size()) {
-            select(items.get(input-1));
+            select(items.get(input - 1));
         } else {
             System.out.println(" 메뉴 번호가 유효하지 않습니다.");
         }
@@ -95,28 +95,28 @@ public class Kiosk {
     private void select(MenuItem item) {
         String display = item.toString();
         CartUI cartUI = new CartUI(display);
-        System.out.println(" 선택한 메뉴: "+display);
+        System.out.println(" 선택한 메뉴: " + display);
         cartUI.view();
         int input = InputUtil.input(Integer.class);
-        if ( input == 1){
+        if (input == 1) {
             cartService.addToCart(item);
-            System.out.println(item.getName()+" 이 장바구니에 추가되었습니다.");
+            System.out.println(item.getName() + " 이 장바구니에 추가되었습니다.");
             category = Category.NONE;
         }
     }
 
-    private void purchase(){
+    private void purchase() {
         Map<MenuItem, Integer> cart = cartService.getCartItems();
         double total = orderService.getTotalPrice(CustomerType.GENERAL);
 
         OrderUI orderUI = new OrderUI(cart, total);
         orderUI.view();
         int input = InputUtil.input(Integer.class);
-        if ( input == 1){
+        if (input == 1) {
             selectCustomer();
-        }
-        else if ( input == 2) category = Category.NONE;
+        } else if (input == 2) category = Category.NONE;
     }
+
 
     private void selectCustomer() {
         CustomerUI customerUI = new CustomerUI();
