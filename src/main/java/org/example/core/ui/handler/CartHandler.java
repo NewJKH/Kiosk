@@ -35,9 +35,7 @@ public class CartHandler extends UIHandler<Integer> {
             cartService.addToCart(menuItem);
             System.out.println(menuItem.getName() + "이(가) 장바구니에 추가되었습니다.");
         } else if (input == 2) {
-            if (cancel != null) {
-                cancel.run();
-            }
+            cancel.run();
         } else {
             System.out.println("잘못된 입력입니다. 다시 선택해주세요.");
         }

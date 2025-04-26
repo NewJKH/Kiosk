@@ -16,7 +16,7 @@ public enum CustomerType {
         this.discount = discount;
     }
 
-    public static Optional<CustomerType> findByOrdinal(int ordinal) {
+    public static Optional<CustomerType> findByIndex(int ordinal) {
         if (ordinal < 1 || ordinal > values().length) return Optional.empty();
         return Optional.of(values()[ordinal - 1]);
     }
