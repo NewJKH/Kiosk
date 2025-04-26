@@ -1,6 +1,6 @@
 package org.example.basic.level1;
 
-import org.example.core.ui.MainMenuUI;
+import org.example.core.ui.ui.MainMenuUI;
 import org.example.core.verification.InputUtil;
 
 import java.util.List;

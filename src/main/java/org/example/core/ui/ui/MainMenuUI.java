@@ -1,14 +1,16 @@
-package org.example.core.ui;
+package org.example.core.ui.ui;
+
+import org.example.core.ui.ConsoleUI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryUI extends ConsoleUI{
+public class MainMenuUI extends ConsoleUI {
 
     private final String title;
     private final List<String> menuItems;
 
-    public CategoryUI(String title, List<String> menuItems) {
+    public MainMenuUI(String title, List<String> menuItems) {
         this.title = title;
         this.menuItems = menuItems;
     }

@@ -2,8 +2,8 @@ package org.example.basic.level4;
 
 import org.example.core.domain.model.Category;
 import org.example.core.domain.model.MenuItem;
-import org.example.core.ui.CategoryUI;
-import org.example.core.ui.MainMenuUI;
+import org.example.core.ui.ui.CategoryUI;
+import org.example.core.ui.ui.MainMenuUI;
 import org.example.core.verification.InputUtil;
 
 import java.util.List;

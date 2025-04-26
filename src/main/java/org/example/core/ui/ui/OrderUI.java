@@ -1,12 +1,13 @@
-package org.example.core.ui;
+package org.example.core.ui.ui;
 
 import org.example.core.domain.model.MenuItem;
+import org.example.core.ui.ConsoleUI;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class OrderUI extends ConsoleUI{
+public class OrderUI extends ConsoleUI {
     private final Map<MenuItem, Integer> cart;
     private final double totalPrice;
 

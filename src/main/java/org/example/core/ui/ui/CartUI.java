@@ -1,9 +1,11 @@
-package org.example.core.ui;
+package org.example.core.ui.ui;
+
+import org.example.core.ui.ConsoleUI;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartUI extends ConsoleUI{
+public class CartUI extends ConsoleUI {
     private final String menuItem;
 
     public CartUI(String menuItem) {

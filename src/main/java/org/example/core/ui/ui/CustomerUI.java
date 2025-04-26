@@ -1,11 +1,12 @@
-package org.example.core.ui;
+package org.example.core.ui.ui;
 
+import org.example.core.ui.ConsoleUI;
 import org.example.pro.level2.CustomerType;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomerUI extends ConsoleUI{
+public class CustomerUI extends ConsoleUI {
 
     @Override
     protected List<String> getFormattedLines() {
