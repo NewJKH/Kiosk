@@ -30,6 +30,8 @@ public class MainMenuHandler extends UIHandler<Integer> {
         this.exit = exit;
     }
 
+    private boolean done = true;
+
     @Override
     protected void showUI() {
         List<String> menuOptions = new ArrayList<>(List.of("Burgers", "Drinks", "Desserts"));
@@ -63,12 +65,19 @@ public class MainMenuHandler extends UIHandler<Integer> {
                 if (hasOrder) cancel.run();
                 else invalidInput();
             }
-            case 0 -> exit.run();
+            case 0 -> {
+                exit.run();
+                done = false;
+            }
             default -> invalidInput();
         }
     }
 
     private void invalidInput() {
         System.out.println("올바른 메뉴 번호를 입력해주세요.");
+    }
+
+    public boolean isDone() {
+        return done;
     }
 }

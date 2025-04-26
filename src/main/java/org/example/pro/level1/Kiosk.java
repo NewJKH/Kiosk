@@ -43,7 +43,7 @@ public class Kiosk {
                 () -> category = Category.NONE
         );
         handler.process();
-        return category != Category.NONE;
+        return handler.isDone();
     }
 
     private boolean foodUI() {
