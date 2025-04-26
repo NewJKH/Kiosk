@@ -5,7 +5,7 @@ import org.example.core.domain.model.MenuItem;
 import org.example.core.domain.repository.CartRepository;
 import org.example.core.domain.repository.MenuRepository;
 import org.example.core.ui.handler.CartHandler;
-import org.example.core.ui.ui.CategoryUI;
+import org.example.core.ui.handler.MainMenuHandler;
 import org.example.core.ui.ui.CustomerUI;
 import org.example.core.ui.ui.MainMenuUI;
 import org.example.core.ui.ui.OrderUI;
@@ -15,7 +15,6 @@ import org.example.pro.level1.service.MenuService;
 import org.example.pro.level1.service.OrderService;
 import org.example.pro.level2.CustomerType;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,34 +45,15 @@ public class Kiosk {
 
 
     private boolean mainUI() {
-        List<String> menuOptions = new ArrayList<>(List.of("Burgers", "Drinks", "Desserts"));
-        boolean hasOrder = !orderService.isEmpty();
-
-        if (hasOrder) {
-            menuOptions.add("Orders       | 장바구니를 확인 후 주문합니다.");
-            menuOptions.add("Cancel       | 진행중인 주문을 취소합니다.");
-        }
-
-        CategoryUI categoryUI = new CategoryUI("MAIN MENU", menuOptions);
-        categoryUI.view();
-        int input = InputUtil.input(Integer.class);
-
-        switch (input) {
-            case 1 -> category = Category.BURGERS;
-            case 2 -> category = Category.DRINKS;
-            case 3 -> category = Category.DESSERTS;
-            case 4 -> {
-                if (hasOrder) purchase();
-            }
-            case 5 -> {
-                if (hasOrder) orderService.clear();
-            }
-            case 0 -> {
-                return false;
-            }
-            default -> System.out.println("올바른 메뉴 번호를 입력해주세요.");
-        }
-        return true;
+        MainMenuHandler handler = new MainMenuHandler(
+                orderService,
+                selectedCategory -> category = selectedCategory,
+                this::purchase,
+                orderService::clear,
+                () -> category = Category.NONE
+        );
+        handler.process();
+        return category != Category.NONE;
     }
 
     private boolean foodUI() {
