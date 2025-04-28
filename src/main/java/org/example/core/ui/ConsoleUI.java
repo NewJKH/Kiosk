@@ -6,16 +6,13 @@ public abstract class ConsoleUI {
 
     public final void render() {
         List<String> lines = getFormattedLines();
-
         if (lines == null || lines.isEmpty()) return;
 
         int padding = 2;
-
         int maxVisualWidth = lines.stream()
                 .mapToInt(String::length)
                 .max()
                 .orElse(0);
-
         int contentWidth = maxVisualWidth + padding * 2;
 
         drawTopBorder(contentWidth);
