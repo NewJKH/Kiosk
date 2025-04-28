@@ -16,9 +16,9 @@ public enum CustomerType {
         this.discount = discount;
     }
 
-    public static Optional<CustomerType> findByIndex(int ordinal) {
-        if (ordinal < 1 || ordinal > values().length) return Optional.empty();
-        return Optional.of(values()[ordinal - 1]);
+    public static Optional<CustomerType> findByIndex(int index) {
+        if (index < 1 || index > values().length) return Optional.empty();
+        return Optional.of(values()[index - 1]);
     }
 
     public String getLabel() {
