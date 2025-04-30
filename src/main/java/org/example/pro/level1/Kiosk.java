@@ -64,9 +64,9 @@ public class Kiosk {
     }
 
     private void orderUI() {
-        new OrderHandler(cartService,orderService,
+        new OrderHandler(cartService, orderService,
                 this::customerUI,
-                ()-> {
+                () -> {
                     System.out.println("주문이 취소되었습니다.");
                     category = Category.NONE;
                 }
