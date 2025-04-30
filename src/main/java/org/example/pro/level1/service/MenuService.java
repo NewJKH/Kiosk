@@ -12,6 +12,7 @@ public class MenuService {
     public MenuService(MenuRepository menuRepository) {
         this.menuRepository = menuRepository;
     }
+
     public List<MenuItem> getItemsByCategory(Category category){
         return menuRepository.getMenuItemsByCategory(category);
     }
