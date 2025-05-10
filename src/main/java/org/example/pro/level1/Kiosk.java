@@ -2,8 +2,6 @@ package org.example.pro.level1;
 
 import org.example.core.domain.model.Category;
 import org.example.core.domain.model.MenuItem;
-import org.example.core.domain.repository.CartRepository;
-import org.example.core.domain.repository.MenuRepository;
 import org.example.core.ui.handler.*;
 import org.example.pro.level1.service.CartService;
 import org.example.pro.level1.service.MenuService;
@@ -23,15 +21,23 @@ public class Kiosk {
      * Kiosk 객체를 생성합니다.
      * 내부적으로 CartService, MenuService, OrderService를 초기화합니다.
      *
-     * @param cartRepository 장바구니 관련 데이터를 처리하는 저장소
-     * @param menuRepository 메뉴 관련 데이터를 처리하는 저장소
+     * @param cartService 장바구니 비즈니스 로직 처리
+     * @param menuService 메뉴 비즈니스 로직 처리
+     * @param orderService 주문관련 비즈니스 로직 처리
      */
-    public Kiosk(CartRepository cartRepository, MenuRepository menuRepository) {
-        this.cartService = new CartService(cartRepository);
-        this.menuService = new MenuService(menuRepository);
-        this.orderService = new OrderService(cartRepository);
+    public Kiosk(CartService cartService, MenuService menuService, OrderService orderService) {
+        this.cartService = cartService;
+        this.menuService = menuService;
+        this.orderService = orderService;
         this.category = Category.NONE;
     }
+//    public Kiosk(CartRepository cartRepository, MenuRepository menuRepository) {
+//        this.cartService = new CartService(cartRepository);
+//        this.menuService = new MenuService(menuRepository);
+//        this.orderService = new OrderService(cartRepository);
+//        this.category = Category.NONE;
+//    }
+
 
     /**
      * 키오스크 프로그램을 실행합니다.
