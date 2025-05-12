@@ -32,9 +32,9 @@ public class Kiosk {
         this.category = Category.NONE;
     }
 //    public Kiosk(CartRepository cartRepository, MenuRepository menuRepository) {
-//        this.cartService = new CartService(cartRepository);
-//        this.menuService = new MenuService(menuRepository);
-//        this.orderService = new OrderService(cartRepository);
+//        this.cartService = new CartService(cartRepository); <- 불필요한 객체생성 문제
+//        this.menuService = new MenuService(menuRepository); <- 불필요한 객체생성 문제
+//        this.orderService = new OrderService(cartRepository); <- 불필요한 객체생성 문제
 //        this.category = Category.NONE;
 //    }
 
